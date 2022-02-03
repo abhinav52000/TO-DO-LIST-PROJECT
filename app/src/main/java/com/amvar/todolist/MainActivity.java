@@ -3,6 +3,7 @@ package com.amvar.todolist;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private EditText num1;
-    Button button1,button2;
+    Button button1,button2,button3;
     EditText e1,e2,e3,e4,e5,e6,e7,e8,e9,e10;
     TextView t1,score_text,v1,v2,v3,v4,v5,v6,v7,v8,v9,v10;
     LinearLayout l1,l2;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         k9=findViewById(R.id.textView29);
         k10=findViewById(R.id.textView30);
         score_text=findViewById(R.id.textView14);
+        button3=findViewById(R.id.tryanother);
 
 
 
@@ -80,17 +82,19 @@ public class MainActivity extends AppCompatActivity {
                 a=Integer.parseInt(s1);
                 score=0;
                 l1.setVisibility(View.VISIBLE);
+
                 t1.setText("Your Input");
-                k1.setText("1 X ".concat(s1)+" =");
-                k2.setText("2 X ".concat(s1)+" =");
-                k3.setText("3 X ".concat(s1)+" =");
-                k4.setText("4 X ".concat(s1)+" =");
-                k5.setText("5 X ".concat(s1)+" =");
-                k6.setText("6 X ".concat(s1)+" =");
-                k7.setText("7 X ".concat(s1)+" =");
-                k8.setText("8 X ".concat(s1)+" =");
-                k9.setText("9 X ".concat(s1)+" =");
-                k10.setText("10 X ".concat(s1)+" =");
+
+                k1.setText(s1+" X 1 =");
+                k2.setText(s1+" X 2 =");
+                k3.setText(s1+" X 3 =");
+                k4.setText(s1+" X 4 =");
+                k5.setText(s1+" X 5 =");
+                k6.setText(s1+" X 6 =");
+                k7.setText(s1+" X 7 =");
+                k8.setText(s1+" X 8 =");
+                k9.setText(s1+" X 9 =");
+                k10.setText(s1+" X 10 =");
             }
         });
 
@@ -99,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                button3.setVisibility(View.VISIBLE);
                 l2.setVisibility(View.VISIBLE);
                 v1.setText(""+(1*a));
                 v2.setText(""+(2*a));
@@ -190,6 +195,16 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 
