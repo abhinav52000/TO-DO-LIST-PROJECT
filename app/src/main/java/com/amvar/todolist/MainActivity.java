@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -78,13 +79,19 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if( num1.getText().toString().length() == 0 )
+                {
+                    Toast.makeText(getApplicationContext(), "Enter a number first", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(i);
+                }
+
                 String s1=num1.getEditableText().toString();
                 a=Integer.parseInt(s1);
                 score=0;
                 l1.setVisibility(View.VISIBLE);
 
                 t1.setText("Your Input");
-
                 k1.setText(s1+" X 1 =");
                 k2.setText(s1+" X 2 =");
                 k3.setText(s1+" X 3 =");
@@ -102,6 +109,17 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if( e1.getText().toString().length() == 0||e2.getText().toString().length() == 0||e3.getText().toString().length() == 0||
+                        e4.getText().toString().length() == 0||e5.getText().toString().length() == 0||e6.getText().toString().length() == 0||
+                        e7.getText().toString().length() == 0||e8.getText().toString().length() == 0||e9.getText().toString().length() == 0||
+                        e10.getText().toString().length() == 0)
+                {
+                    Toast.makeText(getApplicationContext(), "FIRST FILL ALL YOUR INPUT", Toast.LENGTH_LONG).show();
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(i);
+                }
+
 
                 button3.setVisibility(View.VISIBLE);
                 l2.setVisibility(View.VISIBLE);
@@ -201,9 +219,7 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = getBaseContext().getPackageManager()
-                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
         });
